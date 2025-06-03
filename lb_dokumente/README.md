@@ -1,59 +1,132 @@
+
+---
+
+````markdown
 # 🗂 Lebenslauf-Datenbank-System mit Python, SQLite & GUI
 
-Dieses Projekt umfasst ein vollständiges System zur Verwaltung und Bearbeitung von Lebensläufen mit Python, SQLite und Tkinter. Es unterstützt Datenbankverwaltung, GUI-basierte Eingabe, CSV-Import sowie den Export professioneller Lebensläufe nach Excel.
+Dieses Projekt ist ein vollständiges System zur Verwaltung und Bearbeitung von Lebensläufen mit **Python**, **SQLite** und **Tkinter**. Es bietet eine relationale Datenbankstruktur, ein GUI-Frontend, CSV-Importmöglichkeiten und einen strukturierten Excel-Export von Lebensläufen.
+
+---
+
+## 📁 Projektstruktur
+
+```plaintext
+src/
+├── lb_index.py                         # Hauptstartpunkt (GUI)
+├── lb_datenbank/
+│   ├── lb_datenbank.py                # Erstellt die SQLite-Datenbank
+│   └── lb_db_inhalt.py                # Zeigt den aktuellen Datenbankinhalt
+├── lb_dokumente/
+│   ├── README.md                      # Projektdokumentation
+│   └── lebenslauf_erstellen.py       # Exportiert Lebenslauf als Excel-Datei
+├── tbl_grund/
+│   ├── tbl_bewerber.py
+│   ├── tbl_firma.py
+│   ├── tbl_arbeitgeber.py
+│   ├── tbl_taetigkeit.py
+│   ├── tbl_ausbildung.py
+│   ├── tbl_ab_schwerpunkt.py
+│   ├── tbl_kenntnisse.py
+│   └── tbl_interessen.py
+├── tbl_kombi/
+│   ├── tbl_bewerbung.py
+│   ├── tbl_bwg_ag.py
+│   ├── tbl_bwg_ag_t.py
+│   ├── tbl_bwg_ab.py
+│   ├── tbl_bwg_ab_swp.py
+│   ├── tbl_bwg_k.py
+│   └── tbl_bwg_i.py
+````
 
 ---
 
 ## 🔧 Technologien
 
-- Python 3
-- SQLite (`sqlite3`)
-- Tkinter (GUI)
-- OpenPyXL (Excel-Export)
+* Python 3.x
+* SQLite (`sqlite3`, Standardmodul)
+* Tkinter (GUI, Standardmodul)
+* CSV (`csv`, Standardmodul)
+* OpenPyXL (für Excel-Export)
 
 ---
 
-## 📁 Datenbankstruktur
+## 📦 Installation
 
-Die zentrale SQLite-Datenbank `lebenslauf.db` besteht aus logisch verknüpften Tabellen:
-
-| Tabelle                 | Inhalt                                                                             |
-|-------------------------|------------------------------------------------------------------------------------|
-| `tbl_bewerber`          | Persönliche Daten                                                                  |
-| `tbl_firma`             | Zielunternehmen                                                                    |
-| `tbl_bewerbung`         | Verknüpfung Bewerber ↔ Firma                                                       |
-| `tbl_arbeitgeber`       | Berufliche Stationen                                                               |
-| `tbl_bwg_ag`            | Verknüpfung Bewerber ↔ Arbeitgeber                                                 |
-| `tbl_taetigkeit`        | Tätigkeiten                                                                        |
-| `tbl_bwg_ag_t`          | Verknüpfung Bewerbung ↔ Arbeitgeber ↔ Tätigkeit          |
-| `tbl_ausbildung`        | Ausbildungsstationen                                                               |
-| `tbl_bwg_ab`            | Verknüpfung Bewerber ↔ Ausbildungsstation                                          |
-| `tbl_ab_schwerpunkt`    | Ausbildungsschwerpunkte                                                            |
-| `tbl_bwg_ab_swp`        | Verknüpfung Bewerbung ↔ Ausbildungsstätte ↔ Schwerpunkt  |
-| `tbl_kenntnisse`        | Fachliche Kenntnisse                                                               |
-| `tbl_bwg_k`             | Verknüpfung Bewerbung ↔ Kenntnisse                                                 |
-| `tbl_interessen`        | Persönliche Interessen                                                             |
-| `tbl_bwg_i`             | Verknüpfung Bewerbung ↔ Interessen                                                 |
-
-
-**Aufruf des Programms per Skript:**
+Nur externe Bibliothek installieren:
 
 ```bash
-python lb_index.py
+pip install openpyxl
 ```
-**Datenbankerstellung per Skript:**
+
+Alle anderen Module stammen aus der Standardbibliothek von Python.
+
+---
+
+## ⚙️ Anwendung starten
+
+**GUI starten:**
 
 ```bash
-python lb_datenbank.py
+python src/lb_index.py
 ```
-**Ansicht vom Inhalt der Datenbank per Skript:**
+
+**Datenbank erstellen:**
 
 ```bash
-python lb_db_inhalt.py
+python src/lb_datenbank/lb_datenbank.py
 ```
 
+**Datenbankinhalt anzeigen:**
 
-### Unterstützte CSV-Formate
+```bash
+python src/lb_datenbank/lb_db_inhalt.py
+```
+
+---
+
+## 🧩 Datenbankstruktur
+
+Die relationale Datenbank `lebenslauf.db` besteht aus logisch verknüpften Tabellen:
+
+| Tabelle              | Inhalt                  |
+| -------------------- | ----------------------- |
+| `tbl_bewerber`       | Persönliche Daten       |
+| `tbl_firma`          | Zielunternehmen         |
+| `tbl_bewerbung`      | Bewerbung               |
+| `tbl_arbeitgeber`    | Berufliche Stationen    |
+| `tbl_taetigkeit`     | Tätigkeiten             |
+| `tbl_ausbildung`     | Ausbildungsstationen    |
+| `tbl_ab_schwerpunkt` | Ausbildungsschwerpunkte |
+| `tbl_kenntnisse`     | Fachliche Kenntnisse    |
+| `tbl_interessen`     | Persönliche Interessen  |
+
+---
+
+## 🔗 Verknüpfungstabellen
+
+Diese Tabellen verbinden Bewerbungen mit Arbeitgebern, Tätigkeiten, Ausbildungen, Kenntnissen und Interessen:
+
+| Tabelle          | Zweck                                                               |
+| ---------------- | ------------------------------------------------------------------- |
+| `tbl_bwg_ag`     | Bewerbung ↔ Arbeitgeber                                             |
+| `tbl_bwg_ag_t`   | Bewerbung ↔ Arbeitgeber ↔ Tätigkeit (bis zu 3 Tätigkeiten)          |
+| `tbl_bwg_ab`     | Bewerbung ↔ Ausbildungsstation                                      |
+| `tbl_bwg_ab_swp` | Bewerbung ↔ Ausbildungsstätte ↔ Schwerpunkt (bis zu 3 Schwerpunkte) |
+| `tbl_bwg_k`      | Bewerbung ↔ Kenntnisse                                              |
+| `tbl_bwg_i`      | Bewerbung ↔ Interessen                                              |
+
+---
+
+## 🖼 GUI-Funktionalität
+
+Das Tkinter-Frontend ermöglicht:
+
+* **Hinzufügen**, **Bearbeiten**, **Anzeigen** und **Löschen** von Datensätzen
+* **Import von CSV-Dateien** in alle Grundtabellen
+
+---
+
+## 📄 Unterstützte CSV-Formate
 
 ```csv
 # tbl_bewerber
@@ -81,38 +154,23 @@ Kenntnis,Stufe
 Interesse
 ```
 
-### Funktionen des GUI-Frontends
-
-
-Ein Tkinter-Frontend erlaubt das **Hinzufügen**, **Bearbeiten**, **Anzeigen und Löschen** und **CSV-Importieren** von Datensätzen.
-
-## 🔗 Verknüpfungstabellen
-
-Zur Modellierung komplexer Beziehungen zwischen Bewerbungen, Arbeitgebern, Tätigkeiten, Ausbildungen, Kenntnissen und Interessen dienen mehrere Verknüpfungstabellen:
-
-| Tabelle               | Zweck                                                                  |
-|------------------------|------------------------------------------------------------------------|
-| `tbl_bwg_ag`           | Bewerbung ↔ Arbeitgeber                                                |
-| `tbl_bwg_ag_t`         | Bewerbung ↔ Arbeitgeber ↔ Tätigkeit (bis zu 3 Tätigkeiten)             |
-| `tbl_bwg_ab`           | Bewerbung ↔ Ausbildungsstation                                         |
-| `tbl_bwg_ab_swp`       | Bewerbung ↔ Ausbildungsstätte ↔ Schwerpunkt (bis zu drei Schwerpunkte) |
-| `tbl_bwg_k`            | Bewerbung ↔ Kenntnisse                                                 |
-| `tbl_bwg_i`            | Bewerbung ↔ Interessen                                                 |
-
 ---
 
 ## 📤 Lebenslauf-Export (Excel)
 
-Ein separates Skript exportiert einen vollständigen Lebenslauf im `.xlsx`-Format inklusive **Profilfoto**, **Unterschrift** und strukturierter Darstellung aller Daten.
+Mit folgendem Befehl wird ein strukturierter Lebenslauf inklusive Foto und Unterschrift erstellt:
 
-### Verwendete Datenquellen
+```bash
+python src/lb_dokumente/lebenslauf_erstellen.py
+```
 
-- Bewerberdaten
-- Arbeitgeber und Tätigkeiten
-- Ausbildungsstationen und Schwerpunkte
-- Kenntnisse & Interessen
+Die Datei wird gespeichert als:
 
-### Excel-Struktur
+```plaintext
+Lebenslauf_Bewerbung_<ID>_<Datum>.xlsx
+```
+
+### Enthaltene Daten:
 
 1. Titel: *Lebenslauf*
 2. Persönliche Daten + Foto
@@ -122,37 +180,17 @@ Ein separates Skript exportiert einen vollständigen Lebenslauf im `.xlsx`-Forma
 6. Interessen
 7. Ort, Datum, Unterschrift (optional)
 
-**Export starten:**
+---
 
-```bash
-python lebenslauf_erstellen.py
+## 🔮 Zukünftige Erweiterungen
+
+* Validierung von Datumsfeldern
+* Such- und Sortierfunktionen im GUI
+* PDF-Export
+* Benutzer-Login und -Verwaltung
+
+---
+
 ```
-
-> Die Datei wird als `Lebenslauf_Bewerbung_<ID>_<Datum>.xlsx` gespeichert.
-
----
-
-## ⚙️ Voraussetzungen
-
-- Python 3.x
-- Module: `tkinter`, `sqlite3`, `csv`, `openpyxl`
-
-**Installation (sofern nötig):**
-
-```bash
-pip install openpyxl
-```
-
----
-
-## 🛠 Zukünftige Erweiterungen
-
-- Datumvalidierung
-- Such- und Sortierfunktionen
-- PDF-Export
-- Benutzerverwaltung
-
----
-
 
 
