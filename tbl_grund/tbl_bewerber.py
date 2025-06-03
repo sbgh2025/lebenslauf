@@ -6,7 +6,7 @@ from tkinter import filedialog
 
 
 # Verbindung zur SQLite-Datenbank
-conn = sqlite3.connect("/home/birgit/PycharmProjects/LebenslaufTest/src/lb_datenbank/lebenslauf.db")
+conn = sqlite3.connect("/absoluter/pfad/zu/lebenslauf.db")
 
 
 cursor = conn.cursor()
