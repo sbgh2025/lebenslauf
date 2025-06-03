@@ -4,7 +4,7 @@ from tkinter import messagebox, ttk, filedialog
 import csv
 
 # Verbindung zur SQLite-Datenbank
-conn = sqlite3.connect("/home/birgit/PycharmProjects/LebenslaufTest/src/lb_datenbank/lebenslauf.db")
+conn = sqlite3.connect("/absoluter/pfad/zu/lebenslauf.db")
 cursor = conn.cursor()
 
 # Tabelle erstellen
