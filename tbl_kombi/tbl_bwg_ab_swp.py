@@ -3,7 +3,7 @@ import tkinter as tk
 from tkinter import ttk, messagebox
 
 # Verbindung zur Datenbank
-conn = sqlite3.connect("/home/birgit/PycharmProjects/LebenslaufTest/src/lb_datenbank/lebenslauf.db")
+conn = sqlite3.connect("/absoluter/pfad/zu/lebenslauf.db")
 cursor = conn.cursor()
 
 root = tk.Tk()
