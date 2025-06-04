@@ -19,7 +19,7 @@ conn.commit()
 # Tkinter-Fenster
 root = tk.Tk()
 root.title("Interessen verwalten")
-root.geometry("700x400")
+root.geometry("700x500")
 
 # Label + Eingabefeld
 tk.Label(root, text="Interesse:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
