@@ -22,7 +22,7 @@ conn.commit()
 # Fenster
 root = tk.Tk()
 root.title("Bewerbungen verwalten")
-root.geometry("950x400")
+root.geometry("950x500")
 
 # Labels und Comboboxen
 tk.Label(root, text="Bewerber:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
