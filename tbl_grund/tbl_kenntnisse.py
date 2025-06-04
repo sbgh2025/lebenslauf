@@ -20,7 +20,7 @@ conn.commit()
 # Tkinter-Fenster
 root = tk.Tk()
 root.title("Kenntnisse verwalten")
-root.geometry("800x400")
+root.geometry("800x500")
 
 # Label + Eingabefelder
 tk.Label(root, text="Kenntnis:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
