@@ -19,7 +19,7 @@ conn.commit()
 # Tkinter-Fenster
 root = tk.Tk()
 root.title("Tätigkeiten verwalten")
-root.geometry("700x400")  # ggf. größer setzen
+root.geometry("700x500")  # ggf. größer setzen
 
 # Label + Eingabefeld
 tk.Label(root, text="Tätigkeit:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
