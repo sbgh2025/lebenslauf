@@ -19,7 +19,7 @@ conn.commit()
 # Tkinter-Fenster
 root = tk.Tk()
 root.title("Ausbildungsschwerpunkte verwalten")
-root.geometry("600x400")
+root.geometry("600x500")
 
 # Label + Eingabefeld
 tk.Label(root, text="Schwerpunkt:").grid(row=0, column=0, padx=10, pady=5, sticky="e")
